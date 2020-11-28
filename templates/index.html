@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+{% autoescape false %}
+
+<html>
+
+<head>
+	<title>Hello there {{num}}</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, shrink-to-fit=no" />
+	<meta name="theme-color" content="#ffffff" />
+	<meta name="description" content="Can you guess the number?" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	 crossorigin="anonymous">
+
+
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			padding: 0;
+			margin: 0;
+			font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+			Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+			line-height: 1.6;
+			font-size: 18px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+
+
+		}
+
+		main {
+			width: 100vw;
+			max-width: 700px;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+			text-align: center;
+			padding: 32px 32px;
+			padding-top: 15vh;
+
+		}
+
+		button {
+			font-size: 20px;
+			margin-top: 20px;
+		}
+
+		p span {
+			color: blue;
+		}
+
+		.game-container {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			height: 55vh;
+			max-height: 800px;
+
+		}
+
+		.game-container>form {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+			text-align: center;
+		}
+
+		table {
+			text-align: left;
+			table-layout: fixed;
+			word-break: break-all;
+		}
+
+		form {
+			width: 100%;
+		}
+
+		.author {
+			padding-right: 16px;
+		}
+
+		.content {
+			width: 70%;
+		}
+
+		textarea {
+			width: 100%;
+			height: 300px;
+		}
+
+		.time {
+			width: 100%;
+			text-align: right;
+			color: grey;
+		}
+	</style>
+</head>
+
+<body>
+
+	<main>
+		<h1><b>Can you guess the number? It's HARD😥😥😥</b></h1>
+
+		<div class="game-container">
+			<p>{{num}} is {{result}}.</p>
+			</br>
+			</br>
+			<form action="/">
+				<input type="text" placeholder="Please input a number." name="num"></input>
+			    </br>
+                <input class="btn btn-dark" type="submit" value="Submit"></input>
+            </form>
+        </div>
+
+        <h2>See others comments!</h2>
+        </br>
+        <table>
+            <tbody>
+            {% for comment in comments %}
+                <tr>
+                    <td width="20%" class="author"><b>{{comment.author}}: </b></td> 
+                    <td width="80%">{{comment.content}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="time">{{comment.create_time}}</td>
+                </tr>
+            {% endfor%}
+            </tbody>
+        </table>
+		</br>
+
+        <h2>Leave your comments here!</h2>
+		</br>
+        <form method="POST" action="/comments" >
+            <input type="text" placeholder="Name" name="author" maxlength="30"></text>
+            </br>
+            </br>
+            <textarea type="multiline" placeholder="Your comment here." name="content" maxlength="100"></textarea>
+            <input class="btn btn-dark" type="submit" value="Submit"></input>
+        </form>
+		</br>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+	</body>
+</html>
+{% endautoescape %}
